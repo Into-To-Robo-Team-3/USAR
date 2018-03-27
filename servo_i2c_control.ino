@@ -7,14 +7,24 @@
 // See our website, www.dexterindustries.com/howto for more information on the physical setup.
 int flag = 0;
 
+//Servo
 Servo cam_servo;
 int servo_pin = 9;
 int increment = 5;
 int servo_pos = 0;
 
+//LEDs
+int green_led = 13;
+int blue_led = 12;
+int blue_on = 0;
+int green_on = 0;
+
+//i2c commands
 byte currentCommand;
 byte pan_left = 0x01;
 byte pan_right = 0x02;
+byte toggle_blue = 0x03;
+byte toggle_green = 0x04;
 
 
 void setup()
@@ -23,6 +33,8 @@ void setup()
   Wire.onReceive(receiveI2C); // Receive Event from Master
   cam_servo.attach(servo_pin);
   Serial.begin(9600); // We will spit it back out on the serial line.
+  pinMode(green_led, OUTPUT);
+  pinMode(blue_led, OUTPUT);  
 }
 
 // When data is received, this function is called.
@@ -36,6 +48,26 @@ void receiveI2C(int bytesIn)
   }
   else if(currentCommand == pan_right){
     move_servo(increment);
+    delay(50);
+  }
+  else if(currentCommand = toggle_blue){
+    if(!blue_on){
+      digitalWrite(blue_led, HIGH);
+      blue_on = 1;
+    } else {
+      digitalWrite(blue_led, LOW);
+      blue_on = 0;
+    }
+    delay(50);
+  }
+  else if(currentCommand = toggle_green){
+    if(!green_on){
+      digitalWrite(green_led, HIGH);
+      green_on = 1;
+    } else {
+      digitalWrite(green_led, LOW);
+      green_on = 0;
+    }
     delay(50);
   }
   garbage = Wire.read();
@@ -60,6 +92,7 @@ void move_servo(int increment){
 void loop()
 {
   delay(50);
-  Serial.println(servo_pos);
+  Serial.println(currentCommand);
 }
+
 
