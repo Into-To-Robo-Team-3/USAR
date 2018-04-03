@@ -46,11 +46,11 @@ void arduinoControl(){
 		joy_triangle = joy1Btn(4);
 		joy_x = joy1Btn(2);
 		if(joy_dpad == 6){
-			sendCommand(pan_left);
+			sendCommand(pan_right);
 			wait1Msec(50);
 		}	
 		else if(joy_dpad == 2){
-			sendCommand(pan_right);
+			sendCommand(pan_left);
 			wait1Msec(50);
 		}
 		else if(joy_triangle){
