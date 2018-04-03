@@ -52,13 +52,13 @@ void receiveI2C(int bytesIn)
   }
   else if(currentCommand == toggle_blue){
       digitalWrite(blue_led, HIGH);
-      delay(50);
+      delay(20);
       digitalWrite(blue_led, LOW);
       delay(50);
   }
   else if(currentCommand == toggle_green){
       digitalWrite(green_led, HIGH);
-      delay(50);
+      delay(20);
       digitalWrite(green_led, LOW);
       delay(50);
   }
@@ -86,5 +86,3 @@ void loop()
   delay(50);
   Serial.println(currentCommand);
 }
-
-
