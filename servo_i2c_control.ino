@@ -50,25 +50,17 @@ void receiveI2C(int bytesIn)
     move_servo(increment);
     delay(50);
   }
-  else if(currentCommand = toggle_blue){
-    if(!blue_on){
+  else if(currentCommand == toggle_blue){
       digitalWrite(blue_led, HIGH);
-      blue_on = 1;
-    } else {
+      delay(50);
       digitalWrite(blue_led, LOW);
-      blue_on = 0;
-    }
-    delay(50);
+      delay(50);
   }
-  else if(currentCommand = toggle_green){
-    if(!green_on){
+  else if(currentCommand == toggle_green){
       digitalWrite(green_led, HIGH);
-      green_on = 1;
-    } else {
+      delay(50);
       digitalWrite(green_led, LOW);
-      green_on = 0;
-    }
-    delay(50);
+      delay(50);
   }
   garbage = Wire.read();
   garbage = Wire.read();
